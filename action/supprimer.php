@@ -1,6 +1,4 @@
 <?php
-
-
 require_once '../include/database.php';
 session_start();
 // Vérifier si l'identifiant de la liste à supprimer est spécifié dans l'URL

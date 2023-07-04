@@ -1,6 +1,4 @@
 <?php
-
-
 require_once '../include/database.php';
 session_start();
 // Vérifier si l'identifiant de la liste à modifier est spécifié dans le formulaire
@@ -8,16 +6,15 @@ if (isset($_POST['wishlistId']) && !empty($_POST['wishlistId'])) {
     $wishlistId = $_POST['wishlistId'];
     $nom = $_POST['nom'];
     $description = $_POST['description'];
-    $date = $_POST['date']; // Récupérer la valeur de la date du formulaire
+    $date = $_POST['date']; 
 
     // Requête SQL pour mettre à jour la liste de souhaits
     $query = "UPDATE `Liste de souhaits` SET `Nom` = :nom, `Description` = :description, `Date` = :date WHERE `idListe de souhaits` = :wishlistId";
-
-    try {
+try {
         $stmt = $pdo->prepare($query);
         $stmt->bindParam(':nom', $nom, PDO::PARAM_STR);
         $stmt->bindParam(':description', $description, PDO::PARAM_STR);
-        $stmt->bindParam(':date', $date, PDO::PARAM_STR); // Binder la valeur de la date
+        $stmt->bindParam(':date', $date, PDO::PARAM_STR); 
         $stmt->bindParam(':wishlistId', $wishlistId, PDO::PARAM_INT);
         $stmt->execute();
 

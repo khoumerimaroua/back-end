@@ -24,6 +24,7 @@ session_start();
 			<?php unset($_SESSION['flash']); ?>
 		<?php endif; ?>
 		<h1 class="text-center">Inscription</h1>
+		<!-- formulaire d'inscription -->
 		<form action="../action/register.php" method="post"  enctype="multipart/form-data">
 			<div class="m-2">
 				<label for="nom">Votre nom:</label>

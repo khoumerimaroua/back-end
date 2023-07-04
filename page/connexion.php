@@ -25,6 +25,7 @@ session_start();
 			<?php endforeach; ?>
 			<?php unset($_SESSION['flash']); ?>
 		<?php endif; ?>
+		<!-- formulaire de connexion -->
 		<h1 class="text-center">Connexion</h1>
 		<form action="../action/login.php" method="post" class="needs-validation" >
 

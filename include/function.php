@@ -1,11 +1,6 @@
 <?php
 
 function logged_only()
-// cette fonction s'assure que seuls les utilisateurs connectés peuvent accéder à certaines pages. 
-// Si un utilisateur non connecté tente d'accéder à ces pages, 
-// il est redirigé vers la page de connexion. De plus,
-//  si un utilisateur connecté tente d'accéder au profil d'un autre utilisateur, il est redirigé
-//  vers son propre profil.
 {
 	if (session_status() == PHP_SESSION_NONE) {
 		session_start();

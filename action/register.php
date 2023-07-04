@@ -31,17 +31,15 @@ if (isset($_POST['inscription'])) {
             exit();
         }
 
-        // On vérifie si l'utilisateur qui s'inscrit est un administrateur
-        $role = 0; // Rôle "0" pour l'utilisateur
-        if ($mail === 'ibrahimimaroua89@gmail.com') {
-            $role = 1; // Rôle "1" pour l'administrateur
-            $_SESSION['admin'] = true; // Définir la session de l'administrateur
-        }
-
-        // Hachage du mot de passe
+      // On vérifie si l'utilisateur qui s'inscrit est un administrateur
+               $role = 0; // Rôle "0" pour l'utilisateur
+        if (isset($_POST['admin']) && $_POST['admin'] == 'true') {
+             $role = 1; // Rôle "1" pour l'administrateur
+             $_SESSION['admin'] = true; // Définir la session de l'administrateur
+}
+     // Hachage du mot de passe
         $hashedPassword = password_hash($mp, PASSWORD_DEFAULT);
-
-        // Gestion de l'avatar
+    // Gestion de l'avatar
         $avatarName = null; // Par défaut, l'avatar est null
 
         if (isset($_FILES['fileToUpload']) && $_FILES['fileToUpload']['error'] === UPLOAD_ERR_OK) {
@@ -61,8 +59,7 @@ if (isset($_POST['inscription'])) {
                 exit();
             }
         }
-
-        // On ajoute l'utilisateur dans la base de données
+             // On ajoute l'utilisateur dans la base de données
         $query = "INSERT INTO utilisateur (Nom, Mail, mp, Role, IsActive, Avatar) VALUES (:nom, :mail, :mp, :role, :isActive, :avatar)";
         $statement = $pdo->prepare($query);
         $statement->bindValue(':nom', $nom);
