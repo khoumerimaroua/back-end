@@ -2,10 +2,12 @@
 session_start();
 require_once 'include/database.php';
 
-// Requête pour récupérer tous les articles
-$query = "SELECT * FROM `Article`";
+// Requête pour récupérer les listes de souhaits avec le nom de l'utilisateur
+$query = "SELECT souhaits.*, utilisateur.nom AS nom_utilisateur FROM `liste de souhaits` AS souhaits
+          INNER JOIN utilisateur ON souhaits.id = utilisateur.id";
+
 $stmt = $pdo->query($query);
-$articles = $stmt->fetchAll(PDO::FETCH_ASSOC);
+$listesSouhaits = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -58,21 +60,25 @@ $articles = $stmt->fetchAll(PDO::FETCH_ASSOC);
     </div>
 </nav>
 <div class="container">
-    <h1 class="card-title text-warning text-center m-3">Liste des articles</h1>
+    <h1 class="card-title text-black text-center m-3">Liste de souhaits</h1>
 
     <div class="row">
         <?php
-        // Affichage des articles
-        foreach ($articles as $article) {
+        // Affichage des listes de souhaits
+        foreach ($listesSouhaits as $liste) {
             echo '<div class="col-md-4">';
             echo '<div class="card m-3">';
-            echo '<div class="card-body">';
-            echo '<h2 class="card-title text-primary">' . $article['Nom'] . ':</h2>';
-            echo '<p class="card-text text-muted">' . $article['Description'] . '</p>';
+            echo '<div class="card-body ">';
+            echo '<h5 class="card-text  text-primary">Utilisateur: ' . $liste['nom_utilisateur'] . '</h5>';
+            echo '<h6 class="card-text   text-warning ">' . $liste['Nom'] . ':</h6>';
+            echo '<p class="card-text text-muted">' . $liste['Description'] . '</p>';
+            echo '<p class="card-text text-muted">' . $liste['date'] . '</p>';
+            
             echo '</div>';
             echo '</div>';
             echo '</div>';
         }
+        
         ?>
     </div>
 </div>
