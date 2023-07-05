@@ -52,7 +52,7 @@ $listesSouhaits = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 <?php endif; ?>
                 <?php if (isset($_SESSION['admin']) || isset($_SESSION['user'])) : ?>
                     <li class="nav-item">
-                        <a class="nav-link" href="action/logout.php"><i class="bi bi-box-arrow-right"></i> Logout</a>
+                        <a class="nav-link" href="action/logout.php"><i class="bi bi-box-arrow-right"></i>Déconnexion</a>
                     </li>
                 <?php endif; ?>
             </ul>
